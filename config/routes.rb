@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
   devise_for :users
-devise_scope :user do
+  devise_scope :user do
   get '/users/sign_out' => 'devise/sessions#destroy'
+
 end
 
+  resources :wikis
 
   get 'welcome/index'
-
-  get 'welcome/about'
-
-   root to: "welcome#index"
+  get 'about' => 'welcome#about'
+  root "welcome#index"
+end 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -66,4 +67,3 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
