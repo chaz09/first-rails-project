@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.8'
 gem 'devise'
 gem "pundit"
+gem 'faker'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 gem "factory_girl_rails", "~> 4.0"
