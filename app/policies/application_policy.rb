@@ -7,26 +7,31 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
+    user_must_be_logged_in
     scope.where(:id => record.id).exists?
   end
 
   def create?
-    false
+    user_must_be_logged_in
+    user.present?
   end
 
   def new?
-    create?
+    user_must_be_logged_in
+    user.present?
   end
 
   def update?
-    false
+    user_must_be_logged_in
+    user.present?
   end
 
   def edit?
+    user_must_be_logged_in
     update?
   end
 
@@ -49,5 +54,10 @@ class ApplicationPolicy
     def resolve
       scope
     end
+  end
+
+
+  def user_must_be_logged_in
+    raise Pundit::NotAuthorizedError, "must be logged in" unless user
   end
 end
